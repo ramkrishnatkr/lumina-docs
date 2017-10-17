@@ -18,9 +18,10 @@ tmux send-keys 'ssh-add ~/.ssh/github' C-m
 # Setup a build window
 tmux new-window -t $SESSION:2 -n 'build' 
 
-### Setup a phpserver window
-##tmux new-window -t $SESSION:3 -n 'phpserver'
-##tmux send-keys 'php -S localhost:8081' C-m
+# Setup a phpserver window
+tmux new-window -t $SESSION:3 -n 'httpserver'
+tmux send-keys 'cd _build' C-m
+tmux send-keys 'php -S localhost:8081' C-m
 
 # Set default window
 tmux select-window -t $SESSION:0
