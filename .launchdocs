@@ -1,0 +1,30 @@
+#!/usr/local/bin/bash
+# Define the name of the session
+SESSION=`basename $PWD`
+
+# Create new session.
+tmux new-session -d -s $SESSION 
+
+# Rename the first window and loading vim.
+tmux rename-window -t $SESSION:0 vim
+tmux send-keys 'vim index.rst' C-m
+
+# Setup a window for tailing git 
+tmux new-window -t $SESSION:1 -n 'git'
+tmux send-keys 'ssh-agent bash' C-m
+tmux send-keys 'ssh-add ~/.ssh/github' C-m
+
+
+### Setup a postgresql window
+##tmux new-window -t $SESSION:2 -n 'postgresql' 
+##tmux send-keys 'psql -h pgsql500.ixwebhosting.com -U BBBmsuv_dtsdbuser -W BBBmsuv_dtsappdb' C-m
+##
+### Setup a phpserver window
+##tmux new-window -t $SESSION:3 -n 'phpserver'
+##tmux send-keys 'php -S localhost:8081' C-m
+
+# Set default window
+tmux select-window -t $SESSION:0
+
+# Attach to session
+tmux -2 attach-session -t $SESSION
