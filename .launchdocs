@@ -15,10 +15,9 @@ tmux send-keys 'ssh-agent bash' C-m
 tmux send-keys 'ssh-add ~/.ssh/github' C-m
 
 
-### Setup a postgresql window
-##tmux new-window -t $SESSION:2 -n 'postgresql' 
-##tmux send-keys 'psql -h pgsql500.ixwebhosting.com -U BBBmsuv_dtsdbuser -W BBBmsuv_dtsappdb' C-m
-##
+# Setup a build window
+tmux new-window -t $SESSION:2 -n 'build' 
+
 ### Setup a phpserver window
 ##tmux new-window -t $SESSION:3 -n 'phpserver'
 ##tmux send-keys 'php -S localhost:8081' C-m
